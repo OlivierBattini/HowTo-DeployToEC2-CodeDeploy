@@ -1,0 +1,26 @@
+{
+  "name": "test-deploy-to-ec2",
+  "version": "1.0.0",
+  "description": "Test app for CI/CD + AWS EC2",
+  "main": "main.ts",
+  "scripts": {
+    "start": "npx ts-node src/main.ts",
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/OlivierBattini/test-deploy-to-ec2.git"
+  },
+  "author": "Olivier BATTINI",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/OlivierBattini/test-deploy-to-ec2/issues"
+  },
+  "homepage": "https://github.com/OlivierBattini/test-deploy-to-ec2#readme",
+  "dependencies": {
+    "@types/express": "^4.17.14",
+    "express": "^4.18.1",
+    "ts-node": "^10.9.1",
+    "typescript": "^4.8.4"
+  }
+}
