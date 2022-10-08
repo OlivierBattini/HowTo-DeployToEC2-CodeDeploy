@@ -14,11 +14,11 @@ export NVM_DIR="$HOME/.nvm"
 #Activate nvm
 . ~/.nvm/nvm.sh
 
-#Instal node
+#Install node
 #nvm install --lts
 
 #install node modules
 npm install
 
 #start our node app in the background
-npm start > app.out.log 2> app.err.log < /dev/null & 
+node src/main.js > app.out.log 2> app.err.log < /dev/null & 
