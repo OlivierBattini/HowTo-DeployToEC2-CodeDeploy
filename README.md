@@ -23,7 +23,7 @@ In the **EC2 Console** :
 - Set IAM role to `EC2CodeDeployRole`
 - Setup and set startup script contents from `scripts/install_codedeploy_agent.sh`
 - Add a tag to the instance : `Key = Name, Value = TestApp`
-- Configure security group to allow HTTP 80 and TCP 3000
+- Configure security group to allow TCP 8080 (application HTTP port)
 - Select or create an SSH key pair (allows you to access instance console)
 - Start the instance
 
