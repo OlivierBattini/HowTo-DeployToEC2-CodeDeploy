@@ -27,4 +27,7 @@ In the **EC2 Console** :
 - Select or create an SSH key pair (allows you to access instance console)
 - Start the instance
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> bc353b8 (FEATURE Added AWS CodeDeploy & Pipeline)
