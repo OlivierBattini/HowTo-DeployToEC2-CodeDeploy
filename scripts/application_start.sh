@@ -1,24 +1,24 @@
 #!/bin/bash
 
-#give permission for everything in the express-app directory
-sudo chmod -R 777 /home/ec2-user/app
+USER="ec2-user"
+APP_DIR="app"
 
-#navigate into our working directory where we have all our github files
-cd /home/ec2-user/app
+# Give permission for everything in the application directory
+sudo chmod -R 777 /home/$USER/$APP_DIR
 
-#add npm and node to path
+# Navigate into our working directory where GitHub files have been deployed
+cd /home/$USER/$APP_DIR
+
+# Add npm and node to path
 export NVM_DIR="$HOME/.nvm"	
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # loads nvm	
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # loads nvm bash_completion (node is in path now)
 
-#Activate nvm
+# Activate nvm
 . ~/.nvm/nvm.sh
 
-#Install node
-#nvm install --lts
-
-#install node modules
+# Install project dependencies
 npm install
 
-#start our node app in the background
-node src/main.js > app.out.log 2> app.err.log < /dev/null & 
+# Start application in background using
+npm start > app.out.log 2> app.err.log < /dev/null & 
