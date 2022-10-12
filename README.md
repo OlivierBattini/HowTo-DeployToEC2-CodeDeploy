@@ -6,10 +6,8 @@ This project is my learning journey in the world of **CI/CD** and **Cloud Comput
 
 - [ ] Add unit tests
 - [x] Create simple application deploy to EC2
-- [ ] Add GitHub action for test and 
 - [x] Display of host name and simple stats (for identifying instances)
 - [ ] Load balancer configuration for multiple instances
-- [ ] 
 
 # Steps
 
