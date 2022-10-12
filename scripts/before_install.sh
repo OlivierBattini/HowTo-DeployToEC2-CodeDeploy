@@ -1,20 +1,27 @@
 #!/bin/bash
 
-#Parameters
+# Script parameters
+
 APP_NAME="app"
 USER="ec2-user"
 INSTALL_DIR="/home/${USER}/${APP_NAME}"
 
-#download node and npm
+# Download node version manager
+
+echo "[BEFORE_INSTALL] Downloading Node Version Manager"
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh | bash
 . ~/.nvm/nvm.sh
-#nvm install node 16+
+
+echo "[BEFORE_INSTALL] Installing Node LTS version"
 nvm install --lts
 
-#create our working directory if it doesnt exist
+# Create working directory if it does not exist
+
 if [ -d "$INSTALL_DIR" ]; then
-  echo "${INSTALL_DIR} exists"
+  echo "[BEFORE_INSTALL] Install directory already exists ${INSTALL_DIR}"
 else
-  echo "Creating ${INSTALL_DIR} directory"
+  echo "[BEFORE_INSTALL] Creating directory ${INSTALL_DIR}"
   mkdir ${INSTALL_DIR}
 fi
+
+echo "[BEFORE_INSTALL] Done"
