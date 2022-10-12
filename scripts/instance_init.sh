@@ -6,6 +6,15 @@
 # Script parameters
 
 USER="ec2-user"
+LOGS_DIR="/home/logs"
+
+# Script logging
+exec > >(tee "$LOGS_DIR/instance_init.log") 2>&1
+
+# Creating logs directory
+
+echo "[INSTANCE_INIT] Creating logs directory"
+mkdir $LOG_DIR
 
 # Install dependencies
 
