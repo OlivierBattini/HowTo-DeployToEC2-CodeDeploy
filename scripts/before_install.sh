@@ -5,6 +5,10 @@
 APP_NAME="app"
 USER="ec2-user"
 INSTALL_DIR="/home/${USER}/${APP_NAME}"
+LOGS_DIR="/home/logs"
+
+# Script logging
+exec > >(tee "$LOGS_DIR/before_install.log") 2>&1
 
 # Download node version manager
 

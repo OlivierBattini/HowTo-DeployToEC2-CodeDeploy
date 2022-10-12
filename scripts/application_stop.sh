@@ -1,5 +1,12 @@
 #!/bin/bash
 
+# Script parameters
+
+LOGS_DIR="/home/logs"
+
+# Script logging
+exec > >(tee "$LOGS_DIR/application_stop.log") 2>&1
+
 # Stopping existing node servers
 echo "[APPLICATION_STOP] Stopping any existing node servers"
 pidof node

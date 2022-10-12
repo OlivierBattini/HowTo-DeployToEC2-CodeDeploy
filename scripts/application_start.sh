@@ -1,9 +1,12 @@
 #!/bin/bash
 
 # Script parameters
-
 USER="ec2-user"
 APP_DIR="app"
+LOGS_DIR="/home/logs"
+
+# Script logging
+exec > >(tee "$LOGS_DIR/application_start.log") 2>&1
 
 # Setting application directory
 echo "[APPLICATION_START] Setting application directory"
