@@ -1,6 +1,13 @@
 # About this project
 
-This project is meant as a tutorial to learn using Continuous Deployment to Amazon EC2 from a GitHub repository.
+This project is my learning journey in the world of **CI/CD** and **Cloud Computing**.
+
+## Roadmap
+
+- [ ] Add unit tests
+- [x] Create simple application deploy to EC2
+- [x] Display of host name and simple stats (for identifying instances)
+- [ ] Load balancer configuration for multiple instances
 
 # Steps
 
@@ -8,22 +15,20 @@ This project is meant as a tutorial to learn using Continuous Deployment to Amaz
 
 In the **IAM Console** :
 
-- Create an IAM role for **EC2 use case**
-    - Attach permission policy : AmazonEC2RoleforAWSCodeDeploy
-    - Name the role : `EC2CodeDeployRole`
-- Create an IAM role for **CodeDeploy use case**
-    - Attach permission policy : AWSCodeDeployRole
-    - Name the role : `CodeDeployRole`
+| Select IAM role use case | Attach permission policy | Set role name |
+| --- | --- | --- |
+| EC2 use case | `AmazonEC2RoleforAWSCodeDeploy` | `ProjectName-EC2CodeDeployRole` |
+| CodeDeploy use case | `AWSCodeDeployRole` | `ProjectName-CodeDeployRole` |
 
 ## 2. Create an EC2 instance in AWS Console
 
 In the **EC2 Console** :
 
 - Select a Linux machine image
-- Set IAM role to `EC2CodeDeployRole`
-- Setup and set startup script contents from `scripts/install_codedeploy_agent.sh`
-- Add a tag to the instance : `Key = Name, Value = TestApp`
-- Configure security group to allow HTTP 80 and TCP 3000
+- Set IAM role to `ProjectName-EC2CodeDeployRole`
+- Setup and set startup script contents from `scripts/instance_init.sh`
+- Add a tag to the instance : `Key = Name, Value = ProjectName`
+- Configure security group to allow TCP 8080 (application HTTP port)
 - Select or create an SSH key pair (allows you to access instance console)
 - Start the instance
 
@@ -32,19 +37,19 @@ In the **EC2 Console** :
 In the **CodeDeploy Console** :
 
 - Create an Application :
-    - Name : `TestApp`
+    - Name : `ProjectName`
     - Compute platform : `EC2/On-premise`
 - Create a Deployment Group :
-    - Name : `TestAppGroup`
-    - Role : `CodeDeployRole`
+    - Name : `ProjectName-DeploymentGroup`
+    - Role : `ProjectName-CodeDeployRole`
     - Type : `In-place`
     - Environment : `Amazon EC2 instances`
-    - Tags : `Name` => `TestApp`
+    - Tags : `Name` => `ProjectName`
     - Deployment settings : `CodeDeployDefault.AllAtOnce`
     - Disable load balancer if you use only one EC2 instance
 - Create a Pipeline :
-    - Name : `TestAppPipeline`
+    - Name : `ProjectName-Pipeline`
     - Source provider : `GitHub v2`
-    - Connection => Connect to GitHub and select repository and branch to deploy on push, naming connection `TestAppGitHubConnection`
+    - Connection => Connect to GitHub and select repository and branch to deploy on push, naming connection `ProjectName-GitHubConnection`
     - Skip build stage
     - Add deploy stage : `AWS CodeDeploy` and select corresponding app name and deployment group
